@@ -14,6 +14,8 @@ phases:
       - echo logging in to ecr...
       - apt update
       - apt install amazon-ecr-credential-helper
+      - apk add --no-cache curl jq python py-pip
+      - pip install awscli
       - $(aws ecr get-login-password --region $AWS_REGION)
   build:
     commands:
