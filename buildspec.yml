@@ -12,7 +12,9 @@ phases:
   pre_build:
     commands:
       - echo logging in to ecr...
-      # - $(aws ecr get-login-password --region $AWS_REGION)
+      - apt update
+      - apt install amazon-ecr-credential-helper
+      - $(aws ecr get-login-password --region $AWS_REGION)
   build:
     commands:
       - echo building and testing dev images...
