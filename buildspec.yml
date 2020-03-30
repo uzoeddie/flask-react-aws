@@ -12,11 +12,9 @@ phases:
   pre_build:
     commands:
       - echo logging in to ecr...
-      - apt update
-      - apt install amazon-ecr-credential-helper
       - apk add --no-cache curl jq python py-pip
       - pip install awscli
-      - $(aws ecr get-login-password --region $AWS_REGION)
+      - $(aws ecr get-login --no-include-email --region "${REGION}")
   build:
     commands:
       - echo building and testing dev images...
