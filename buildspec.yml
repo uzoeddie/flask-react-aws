@@ -7,19 +7,12 @@ env:
 
 phases:
   install:
-    commands:
-      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      - unzip awscliv2.zip
-      - ./aws/install
     runtime-versions:
       docker: 18
   pre_build:
     commands:
-      - aws --version
       - echo logging in to ecr...
-      - pip install --upgrade pip
-      - pip install --upgrade awscli
-      - $(aws ecr get-login-password --region eu-central-1)
+      - $(aws ecr get-login-password --region $AWS_REGION)
   build:
     commands:
       - echo building and testing dev images...
