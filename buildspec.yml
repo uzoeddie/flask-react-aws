@@ -12,6 +12,7 @@ phases:
   pre_build:
     commands:
       - echo logging in to ecr...
+      - pip install --upgrade pip
       - pip install --upgrade awscli
       - $(aws ecr get-login-password --region eu-central-1)
   build:
